@@ -1,0 +1,34 @@
+buildscript { //프로젝트의 의존성 관리를 위한 설정
+    ext { //ext는 build.gradle 에서 사용하는 전역변수를
+        springBootVersion = '2.1.7.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+//자바와 스프링 부트를 사용하기 위해 필수적인 플러그인
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'  //스프링 부트의 의존성들을 관리 해 주는 플러그인
+
+
+group 'org.test1'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories { //repositories는 각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을지를 정함
+    mavenCentral()
+    jcenter()
+}
+
+dependencies { //특정 버전을 명시하지 않아야만 맨 위에 classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"의 버전을 따라가게 됨
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
